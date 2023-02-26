@@ -1,49 +1,40 @@
 import pygame
-import math
 import sys
-import random
+
 pygame.init()
 
 clock = pygame.time.Clock()
 FPS = 60
+w = 850
+h = 600
 
-SCREEN_WIDTH = 1500
-SCREEN_HEIGHT = 600
-
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+screen =pygame.display.set_mode((w, h))
 pygame.display.set_caption("dinosaurus")
 
-
-bg = pygame.image.load("bg.png").convert()
+bg = pygame.image.load("bg.png")
+bg_rect = bg.get_rect()
 bg_width = bg.get_width()
 
 hero = pygame.image.load("Troll.png")
 hero = pygame.transform.scale(hero,(80,50,))
 
-scroll = 0
-tiles = math.ceil(SCREEN_WIDTH  / bg_width) + 1
 
-run = True
-while run:
-
-  clock.tick(FPS)
-
-  for i in range(0, tiles):
-    screen.blit(bg, (i * bg_width + scroll, 0))
+while True:
+    for udalost in pygame.event.get():
+        if udalost.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
     
-  scroll -= 5
-
-  if abs(scroll) > bg_width:
-    scroll = 0
-
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      run = False
+    
+    screen.blit(bg, bg_rect)
+    screen.blit(hero,(100,550))
+    
       
-  screen.blit(hero,(300,550))
+      
+      
+      
 
-
-  pygame.display.update()
-
+    pygame.display.update()
+    
 pygame.quit()
     
