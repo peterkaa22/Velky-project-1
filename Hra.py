@@ -23,7 +23,9 @@ bg_width = bg.get_width()
 hero = pygame.image.load("Troll.png")
 hero = pygame.transform.scale(hero,(80,50,))
 
-
+krecek_enemy = pygame.image.load("pngegg.png")
+krecek_rect = krecek_enemy.get_rect()
+krecek_rect.center = (700, 568)
 
 while True:
     for udalost in pygame.event.get():
@@ -34,6 +36,8 @@ while True:
     
     screen.blit(bg, bg_rect)
     screen.blit(hero,(100,vyška))
+    screen.blit(krecek_enemy, krecek_rect)
+    
     
     klavesa = pygame.key.get_pressed()
     if klavesa[pygame.K_SPACE] and not (jump or padani):
@@ -53,12 +57,7 @@ while True:
     if v_dolu < vyška:
         padani = False 
         
-        
-        
-        
-        
-    
-              
+                    
 
     pygame.display.update()
     
