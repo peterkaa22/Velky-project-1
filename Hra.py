@@ -7,6 +7,11 @@ clock = pygame.time.Clock()
 FPS = 60
 w = 850
 h = 600
+jump = False 
+v_konec = 410  
+vyška = 550
+v_dolu = 550
+padani = False 
 
 screen =pygame.display.set_mode((w, h))
 pygame.display.set_caption("dinosaurus")
@@ -19,6 +24,7 @@ hero = pygame.image.load("Troll.png")
 hero = pygame.transform.scale(hero,(80,50,))
 
 
+
 while True:
     for udalost in pygame.event.get():
         if udalost.type == pygame.QUIT:
@@ -27,12 +33,32 @@ while True:
     
     
     screen.blit(bg, bg_rect)
-    screen.blit(hero,(100,550))
+    screen.blit(hero,(100,vyška))
     
-      
-      
-      
-      
+    klavesa = pygame.key.get_pressed()
+    if klavesa[pygame.K_SPACE] and not (jump or padani):
+        jump = True
+    
+    if jump:
+        vyška = vyška-5
+
+    if vyška < v_konec:
+        jump = False
+        padani = True 
+    
+    if padani:
+        vyška = vyška+5
+        
+        
+    if v_dolu < vyška:
+        padani = False 
+        
+        
+        
+        
+        
+    
+              
 
     pygame.display.update()
     
