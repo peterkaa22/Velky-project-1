@@ -4,7 +4,7 @@ import sys
 pygame.init()
 
 clock = pygame.time.Clock()
-FPS = 60
+FPS = 120
 w = 850
 h = 600
 jump = False 
@@ -12,6 +12,13 @@ v_konec = 410
 vyška = 550
 v_dolu = 550
 padani = False 
+krecek_rychlost = 5
+krecek_akcelerace = 0.5
+krecek_behind_border = 100
+krecek_soucasna_rychlost = krecek_rychlost
+
+
+
 
 screen =pygame.display.set_mode((w, h))
 pygame.display.set_caption("dinosaurus")
@@ -25,7 +32,8 @@ hero = pygame.transform.scale(hero,(80,50,))
 
 krecek_enemy = pygame.image.load("pngegg.png")
 krecek_rect = krecek_enemy.get_rect()
-krecek_rect.center = (700, 568)
+krecek_rect.x = w + krecek_behind_border
+krecek_rect.y = 568
 
 while True:
     for udalost in pygame.event.get():
@@ -56,10 +64,17 @@ while True:
         
     if v_dolu < vyška:
         padani = False 
-        
-                    
 
+    if krecek_rect.x < 0:
+        krecek_rect.x = w + krecek_behind_border
+        krecek_rect.y = (568 - 40)
+        
+    else:
+        krecek_rect.x -= krecek_rychlost
+                    
     pygame.display.update()
-    
+
+    clock.tick(FPS)
+
 pygame.quit()
     
