@@ -14,14 +14,17 @@ v_dolu = 550
 padani = False 
 krecek_rychlost = 5
 krecek_akcelerace = 0.5
-krecek_behind_border = 100
+krecek_behind_border = 200
 krecek_soucasna_rychlost = krecek_rychlost
+hrac_start_zivot = 1
+bila = (255, 255, 255)
 
-
-
+hrac_zivot = hrac_start_zivot
 
 screen =pygame.display.set_mode((w, h))
 pygame.display.set_caption("dinosaurus")
+
+zivot_font = pygame.font.SysFont("arialblack", 20)
 
 bg = pygame.image.load("bg.png")
 bg_rect = bg.get_rect()
@@ -40,12 +43,19 @@ while True:
         if udalost.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    
+
+    zivot_text = zivot_font.render(f"Životy: {hrac_zivot}", True, bila)
+    zivot_text_rect = zivot_text.get_rect()
+    zivot_text_rect.right = w - 20
+    zivot_text_rect.top = 15
+
     
     screen.blit(bg, bg_rect)
     screen.blit(hero,(100,vyška))
     screen.blit(krecek_enemy, krecek_rect)
+    screen.blit(zivot_text, zivot_text_rect)
     
+    pygame.draw.line(screen, bila, (0,60), (w, 60), 2)
     
     klavesa = pygame.key.get_pressed()
     if klavesa[pygame.K_SPACE] and not (jump or padani):
@@ -66,6 +76,7 @@ while True:
         padani = False 
 
     if krecek_rect.x < 0:
+        hrac_zivot -= 1
         krecek_rect.x = w + krecek_behind_border
         krecek_rect.y = (568 - 40)
         
