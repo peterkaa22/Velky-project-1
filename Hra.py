@@ -36,7 +36,7 @@ hero = pygame.transform.scale(hero,(80,50,))
 krecek_enemy = pygame.image.load("pngegg.png")
 krecek_rect = krecek_enemy.get_rect()
 krecek_rect.x = w + krecek_behind_border
-krecek_rect.y = 568
+krecek_rect.y = 528
 
 while True:
     for udalost in pygame.event.get():
@@ -76,13 +76,20 @@ while True:
         padani = False 
 
     if krecek_rect.x < 0:
-        hrac_zivot -= 1
         krecek_rect.x = w + krecek_behind_border
         krecek_rect.y = (568 - 40)
         
     else:
         krecek_rect.x -= krecek_rychlost
-                    
+    
+    if krecek_rect.x < 100 + 80:
+        probiha_kolize = True 
+        hrac_zivot = 1
+        hrac_zivot -= 1
+        
+        
+
+    
     pygame.display.update()
 
     clock.tick(FPS)
