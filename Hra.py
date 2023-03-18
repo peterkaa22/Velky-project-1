@@ -25,6 +25,7 @@ screen =pygame.display.set_mode((w, h))
 pygame.display.set_caption("dinosaurus")
 
 zivot_font = pygame.font.SysFont("arialblack", 20)
+font = pygame.font.SysFont("arialblack", 20)
 
 bg = pygame.image.load("bg.png")
 bg_rect = bg.get_rect()
@@ -38,22 +39,33 @@ krecek_rect = krecek_enemy.get_rect()
 krecek_rect.x = w + krecek_behind_border
 krecek_rect.y = 528
 
+timer_event = pygame.USEREVENT + 1
+pygame.time.set_timer(timer_event, 1000)
+time_left = 0
+
+
+
 while True:
     for udalost in pygame.event.get():
         if udalost.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
+        elif udalost.type == timer_event:
+            time_left +=1
+            
     zivot_text = zivot_font.render(f"Životy: {hrac_zivot}", True, bila)
     zivot_text_rect = zivot_text.get_rect()
     zivot_text_rect.right = w - 20
     zivot_text_rect.top = 15
 
+    timer_text = font.render(f"Čas: {time_left}", True, (255,255,255))
+                             
     
     screen.blit(bg, bg_rect)
     screen.blit(hero,(100,vyška))
     screen.blit(krecek_enemy, krecek_rect)
     screen.blit(zivot_text, zivot_text_rect)
+    screen.blit(timer_text, (20,20))
     
     pygame.draw.line(screen, bila, (0,60), (w, 60), 2)
     
@@ -84,7 +96,6 @@ while True:
     
     if krecek_rect.x < 100 + 80:
         probiha_kolize = True 
-        hrac_zivot = 1
         hrac_zivot -= 1
         
         
