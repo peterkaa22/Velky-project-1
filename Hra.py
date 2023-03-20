@@ -15,9 +15,14 @@ padani = False
 krecek_rychlost = 5
 krecek_akcelerace = 0.5
 krecek_behind_border = 200
+srdce_behind_border= 2500
+srdce_rychlost = 7
+srdce_soucasna_rychlost = srdce_rychlost
 krecek_soucasna_rychlost = krecek_rychlost
 hrac_start_zivot = 1
 bila = (255, 255, 255)
+probiha_kolize = False
+konec_kolize = False 
 
 hrac_zivot = hrac_start_zivot
 
@@ -38,6 +43,14 @@ krecek_enemy = pygame.image.load("pngegg.png")
 krecek_rect = krecek_enemy.get_rect()
 krecek_rect.x = w + krecek_behind_border
 krecek_rect.y = 528
+
+srdce = pygame.image.load("srdce.png")
+srdce = pygame.transform.scale(srdce,(50,50,))
+srdce_rect = srdce.get_rect()
+srdce_rect.x =  w + srdce_behind_border
+srdce_rect.y =  556
+
+
 
 timer_event = pygame.USEREVENT + 1
 pygame.time.set_timer(timer_event, 1000)
@@ -65,7 +78,8 @@ while True:
     screen.blit(hero,(100,vyška))
     screen.blit(krecek_enemy, krecek_rect)
     screen.blit(zivot_text, zivot_text_rect)
-    screen.blit(timer_text, (20,20))
+    screen.blit(timer_text, (30,15))
+    screen.blit(srdce, srdce_rect)
     
     pygame.draw.line(screen, bila, (0,60), (w, 60), 2)
     
@@ -84,7 +98,7 @@ while True:
         vyška = vyška+5
         
         
-    if v_dolu < vyška:
+    if v_dolu < vyška: 
         padani = False 
 
     if krecek_rect.x < 0:
@@ -97,7 +111,26 @@ while True:
     if krecek_rect.x < 100 + 80:
         probiha_kolize = True 
         hrac_zivot -= 1
+ 
+   # if krecek_rect.x < 179:
+      #  konec_kolize = True
+      #  hrac_zivot = 0
         
+         
+ 
+    if srdce_rect.x < 0:
+        srdce_rect.x = w + srdce_behind_border
+        srdce_rect.y = (556)
+
+    else:
+        srdce_rect.x -= srdce_rychlost
+        
+    if srdce_rect.x < 180:
+        probiha_kolize = True
+        hrac_zivot += 1
+    
+   # if srdce_rect.x < 179:
+    #    probiha_kolize = False 
         
 
     
