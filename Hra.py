@@ -9,7 +9,7 @@ FPS = 120
 w = 850
 h = 600
 jump = False 
-v_konec = 320 
+v_konec = 330
 vyška = 550
 v_dolu = 550
 padani = False 
@@ -17,7 +17,7 @@ krecek_rychlost = 5
 krecek_akcelerace = 0.5
 krecek_behind_border = 200
 srdce_behind_border= 2500
-srdce_rychlost = 7
+srdce_rychlost = 5
 srdce_soucasna_rychlost = srdce_rychlost
 krecek_soucasna_rychlost = krecek_rychlost
 hrac_start_zivot = 3
@@ -60,6 +60,7 @@ time_left = 0
 
 
 
+
 while True:
     for udalost in pygame.event.get():
         if udalost.type == pygame.QUIT:
@@ -73,7 +74,7 @@ while True:
     zivot_text_rect.right = w - 20
     zivot_text_rect.top = 15
 
-    timer_text = font.render(f"Čas: {time_left}", True, (255,255,255))
+    timer_text = font.render(f"Čas:{time_left}", True, (255,255,255))
                              
     
     screen.blit(bg, bg_rect)
@@ -127,9 +128,60 @@ while True:
         probiha_kolize = True
         hrac_zivot += 1
     
-   
-
+    if time_left > 10:
+        krecek_rychlost = 7
+        
+    if time_left > 20:
+        krecek_rychlost = 8
     
+    if time_left > 30:
+        krecek_rychlost = 9
+        
+    if time_left > 40:
+        krecek_rychlost = 10
+    
+    if time_left > 50:
+        krecek_rychlost = 10.5
+        
+    if time_left > 60:
+        krecek_rychlost = 11
+        
+    if time_left > 70:
+        krecek_rychlost = 11.5
+        
+    if time_left > 80:
+        krecek_rychlost = 12
+   
+    if time_left > 70:
+        krecek_rychlost = 12.5
+
+    if time_left > 80:
+        krecek_rychlost = 13
+        
+    if time_left > 90:
+        krecek_rychlost = 13.5
+        
+    if time_left > 100:
+        krecek_rychlost = 14
+        
+    if time_left > 110:
+        krecek_rychlost = 14.5
+        
+    if time_left > 120:
+        krecek_rychlost = 15
+        
+    if time_left > 130:
+        krecek_rychlost = 15.5
+    
+    if time_left > 140:
+        krecek_rychlost = 16
+        
+    if time_left > 150:
+        krecek_rychlost = 16.5
+        
+    if time_left > 160:
+        krecek_rychlost = 17
+   
     pygame.display.update()
 
     clock.tick(FPS)
