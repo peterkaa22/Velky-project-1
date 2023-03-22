@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 
 pygame.init()
 
@@ -8,7 +9,7 @@ FPS = 120
 w = 850
 h = 600
 jump = False 
-v_konec = 410  
+v_konec = 320 
 vyška = 550
 v_dolu = 550
 padani = False 
@@ -19,10 +20,11 @@ srdce_behind_border= 2500
 srdce_rychlost = 7
 srdce_soucasna_rychlost = srdce_rychlost
 krecek_soucasna_rychlost = krecek_rychlost
-hrac_start_zivot = 1
+hrac_start_zivot = 3
 bila = (255, 255, 255)
 probiha_kolize = False
 konec_kolize = False 
+
 
 hrac_zivot = hrac_start_zivot
 
@@ -104,34 +106,28 @@ while True:
     if krecek_rect.x < 0:
         krecek_rect.x = w + krecek_behind_border
         krecek_rect.y = (568 - 40)
-        
+        probiha_kolize = False
     else:
         krecek_rect.x -= krecek_rychlost
     
-    if krecek_rect.x < 100 + 80:
-        probiha_kolize = True 
+    if krecek_rect.x < 100 + 80 and not probiha_kolize and vyška > 470:
+        probiha_kolize = True
         hrac_zivot -= 1
- 
-   # if krecek_rect.x < 179:
-      #  konec_kolize = True
-      #  hrac_zivot = 0
         
-         
+                      
  
     if srdce_rect.x < 0:
         srdce_rect.x = w + srdce_behind_border
         srdce_rect.y = (556)
-
+        probiha_kolize = False
     else:
         srdce_rect.x -= srdce_rychlost
-        
-    if srdce_rect.x < 180:
+                   
+    if srdce_rect.x < 180 and not probiha_kolize and vyška > 470:
         probiha_kolize = True
         hrac_zivot += 1
     
-   # if srdce_rect.x < 179:
-    #    probiha_kolize = False 
-        
+   
 
     
     pygame.display.update()
@@ -139,4 +135,3 @@ while True:
     clock.tick(FPS)
 
 pygame.quit()
-    
