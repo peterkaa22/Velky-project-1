@@ -26,6 +26,7 @@ probiha_kolize = False
 konec_kolize = False 
 konec_hry = False 
 
+
 hrac_zivot = hrac_start_zivot
 
 screen =pygame.display.set_mode((w, h))
@@ -54,7 +55,11 @@ srdce_rect = srdce.get_rect()
 srdce_rect.x =  w + srdce_behind_border
 srdce_rect.y =  556
 
-
+voda = pygame.image.load("voda.png")
+voda = pygame.transform.scale(voda,(1000,700))
+voda_rect = voda.get_rect()
+voda_rect.x = 100
+voda_rect.y = 310
 
 timer_event = pygame.USEREVENT + 1
 pygame.time.set_timer(timer_event, 1000)
@@ -73,8 +78,18 @@ while True:
     
     if hrac_zivot < 1:
             konec_hry = True
-               
-    
+            
+    klavesa = pygame.key.get_pressed()
+    if klavesa[pygame.K_LCTRL] and konec_hry:
+        
+        konec_hry = False  
+        krecek_rychlost = 5
+        hrac_zivot = 3
+        time_left = 0
+        krecek_rect.x = w + krecek_behind_border
+        krecek_rect.y = 528
+        srdce_rect.x = w + srdce_behind_border
+        srdce_rect.y = 556
     
     if konec_hry == False:
                 
@@ -95,11 +110,15 @@ while True:
         screen.blit(zivot_text, zivot_text_rect)
         screen.blit(timer_text, (30,15))
         screen.blit(srdce, srdce_rect)
+        screen.blit(voda, voda_rect) 
         
         pygame.draw.line(screen, bila, (0,60), (w, 60), 2)
         
         
         klavesa = pygame.key.get_pressed()
+        
+            
+                
         if klavesa[pygame.K_SPACE] and not (jump or padani):
             jump = True
         
@@ -141,70 +160,104 @@ while True:
             probiha_kolize = True
             hrac_zivot += 1
         
+        if krecek_rect.x < 600:
+            krecek_rychlost = 2
+        
+        if krecek_rect.x < 500:
+            krecek_rychlost = 5
+        
+        
+        
+        
+        
         if time_left > 10:
-            krecek_rychlost = 7
+            krecek_rychlost = 6
+        if krecek_rect.x < 600:
+            krecek_rychlost = 2
+        if krecek_rect.x < 500:
+            krecek_rychlost = 6
+        
+            
             
         if time_left > 20:
             krecek_rychlost = 8
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 8
         
         if time_left > 30:
             krecek_rychlost = 9
-            
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 9
+         
         if time_left > 40:
             krecek_rychlost = 10
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 10
         
         if time_left > 50:
-            krecek_rychlost = 10.5
+            krecek_rychlost = 11
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 11
             
         if time_left > 60:
-            krecek_rychlost = 11
-            
-        if time_left > 70:
-            krecek_rychlost = 11.5
-            
-        if time_left > 80:
             krecek_rychlost = 12
-       
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 12
+                
         if time_left > 70:
-            krecek_rychlost = 12.5
+            krecek_rychlost = 13
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 13
+                
+        if time_left > 80:
+            krecek_rychlost = 14
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 14
+                
+        if time_left > 70:
+            krecek_rychlost = 15
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 15
 
         if time_left > 80:
-            krecek_rychlost = 13
+            krecek_rychlost = 16
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 16
             
         if time_left > 90:
-            krecek_rychlost = 13.5
-            
-        if time_left > 100:
-            krecek_rychlost = 14
-            
-        if time_left > 110:
-            krecek_rychlost = 14.5
-            
-        if time_left > 120:
-            krecek_rychlost = 15
-            
-        if time_left > 130:
-            krecek_rychlost = 15.5
-        
-        if time_left > 140:
-            krecek_rychlost = 16
-            
-        if time_left > 150:
-            krecek_rychlost = 16.5
-            
-        if time_left > 160:
             krecek_rychlost = 17
-   
+            if krecek_rect.x < 600:
+                krecek_rychlost = 2
+            if krecek_rect.x < 500:
+                krecek_rychlost = 17
+        
+      
+        
         if hrac_zivot < 1:
             screen.blit(konec_text, (315,300))
             screen.blit(restart_text, (285, 360))
         
                 
             
-            
-        
-            
-                
+                         
     
             
             
@@ -213,3 +266,4 @@ while True:
     clock.tick(FPS)
 
 pygame.quit()
+
