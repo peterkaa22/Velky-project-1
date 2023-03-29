@@ -159,6 +159,7 @@ while True:
         if srdce_rect.x < 180 and not probiha_kolize and vyška > 470:
             probiha_kolize = True
             hrac_zivot += 1
+            srdce_rect.x = w + srdce_behind_border
         
         if krecek_rect.x < 600:
             krecek_rychlost = 2
