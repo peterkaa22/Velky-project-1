@@ -81,7 +81,6 @@ while True:
             
     klavesa = pygame.key.get_pressed()
     if klavesa[pygame.K_LCTRL] and konec_hry:
-        
         konec_hry = False  
         krecek_rychlost = 5
         hrac_zivot = 3
@@ -145,7 +144,8 @@ while True:
         
         if krecek_rect.x < 100 + 80 and not probiha_kolize and vyška > 470:
             probiha_kolize = True
-            hrac_zivot -= 1
+            hrac_zivot -= 1 
+            krecek_rect.x = w + krecek_behind_border
             
                           
      
