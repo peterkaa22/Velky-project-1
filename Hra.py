@@ -174,7 +174,7 @@ while True:
             krecek_rychlost = 6
         if krecek_rect.x < 600:
             krecek_rychlost = 2
-        if krecek_rect.x < 500:
+        if krecek_rect.x < 450:
             krecek_rychlost = 6
         
             
@@ -183,73 +183,73 @@ while True:
             krecek_rychlost = 8
             if krecek_rect.x < 600:
                 krecek_rychlost = 2
-            if krecek_rect.x < 500:
+            if krecek_rect.x < 450:
                 krecek_rychlost = 8
         
         if time_left > 30:
             krecek_rychlost = 9
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 3
+            if krecek_rect.x < 450:
                 krecek_rychlost = 9
          
         if time_left > 40:
             krecek_rychlost = 10
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 3
+            if krecek_rect.x < 450:
                 krecek_rychlost = 10
         
         if time_left > 50:
             krecek_rychlost = 11
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 4
+            if krecek_rect.x < 450:
                 krecek_rychlost = 11
             
         if time_left > 60:
             krecek_rychlost = 12
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 4
+            if krecek_rect.x < 450:
                 krecek_rychlost = 12
                 
         if time_left > 70:
             krecek_rychlost = 13
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 5
+            if krecek_rect.x < 450:
                 krecek_rychlost = 13
                 
         if time_left > 80:
             krecek_rychlost = 14
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 5
+            if krecek_rect.x < 450:
                 krecek_rychlost = 14
                 
-        if time_left > 70:
+        if time_left > 90:
             krecek_rychlost = 15
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 6
+            if krecek_rect.x < 450:
                 krecek_rychlost = 15
 
-        if time_left > 80:
+        if time_left > 100:
             krecek_rychlost = 16
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 6
+            if krecek_rect.x < 450:
                 krecek_rychlost = 16
             
-        if time_left > 90:
+        if time_left > 110:
             krecek_rychlost = 17
             if krecek_rect.x < 600:
-                krecek_rychlost = 2
-            if krecek_rect.x < 500:
+                krecek_rychlost = 7
+            if krecek_rect.x < 450:
                 krecek_rychlost = 17
         
-      
+       
         
         if hrac_zivot < 1:
             screen.blit(konec_text, (315,300))
